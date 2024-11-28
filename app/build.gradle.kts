@@ -42,7 +42,11 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    // Зависимости для ViewModel и LiveData
+    implementation(libs.androidx.lifecycle.viewmodel.ktx) // Добавьте алиас для ViewModel
+    implementation(libs.androidx.lifecycle.livedata.ktx) // Добавьте алиас для LiveData
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
 }
