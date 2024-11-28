@@ -9,8 +9,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
@@ -22,7 +22,8 @@ class CrimeListFragment : Fragment() {
     private lateinit var crimeRecyclerView: RecyclerView
     private var adapter: CrimeAdapter? = CrimeAdapter(emptyList())
     private val crimeListViewModel: CrimeListViewModel by lazy {
-        ViewModelProviders.of(this).get(CrimeListViewModel::class.java)
+        // Новый способ получения ViewModel через ViewModelProvider
+        ViewModelProvider(this).get(CrimeListViewModel::class.java)
     }
     private var callbacks: Callbacks? = null
 
@@ -47,8 +48,7 @@ class CrimeListFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_crime_list, container, false)
 
-        crimeRecyclerView =
-            view.findViewById(R.id.crime_recycler_view) as RecyclerView
+        crimeRecyclerView = view.findViewById(R.id.crime_recycler_view) as RecyclerView
         crimeRecyclerView.layoutManager = LinearLayoutManager(context)
         crimeRecyclerView.adapter = adapter
 
@@ -57,15 +57,13 @@ class CrimeListFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        crimeListViewModel.crimeListLiveData.observe(
-            viewLifecycleOwner,
-            Observer { crimes ->
-                crimes?.let {
-                    Log.i(TAG, "Got crimeLiveData ${crimes.size}")
-                    updateUI(crimes)
-                }
+        // Используем LiveData из ViewModel
+        crimeListViewModel.crimeListLiveData.observe(viewLifecycleOwner, Observer { crimes ->
+            crimes?.let {
+                Log.i(TAG, "Got crimeLiveData ${crimes.size}")
+                updateUI(crimes)
             }
-        )
+        })
     }
 
     override fun onDetach() {
@@ -86,7 +84,7 @@ class CrimeListFragment : Fragment() {
                 callbacks?.onCrimeSelected(crime.id)
                 true
             }
-            else -> return super.onOptionsItemSelected(item)
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
@@ -99,8 +97,8 @@ class CrimeListFragment : Fragment() {
         crimeRecyclerView.adapter = adapter
     }
 
-    private inner class CrimeHolder(view: View)
-        : RecyclerView.ViewHolder(view), View.OnClickListener {
+    private inner class CrimeHolder(view: View) :
+        RecyclerView.ViewHolder(view), View.OnClickListener {
 
         private lateinit var crime: Crime
 
@@ -128,11 +126,10 @@ class CrimeListFragment : Fragment() {
         }
     }
 
-    private inner class CrimeAdapter(var crimes: List<Crime>)
-        : RecyclerView.Adapter<CrimeHolder>() {
+    private inner class CrimeAdapter(var crimes: List<Crime>) :
+        RecyclerView.Adapter<CrimeHolder>() {
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
-                : CrimeHolder {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CrimeHolder {
             val layoutInflater = LayoutInflater.from(context)
             val view = layoutInflater.inflate(R.layout.list_item_crime, parent, false)
             return CrimeHolder(view)

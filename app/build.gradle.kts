@@ -45,8 +45,13 @@ dependencies {
     // Зависимости для ViewModel и LiveData
     implementation(libs.androidx.lifecycle.viewmodel.ktx) // Добавьте алиас для ViewModel
     implementation(libs.androidx.lifecycle.livedata.ktx) // Добавьте алиас для LiveData
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    implementation(libs.androidx.room.runtime)  // Room Runtime
+    implementation(libs.androidx.room.ktx)     // Room KTX для Kotlin
 }
+
+
