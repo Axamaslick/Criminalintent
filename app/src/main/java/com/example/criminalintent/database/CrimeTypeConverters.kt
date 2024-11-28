@@ -1,4 +1,4 @@
-package com.example.izotov_criminalintent.database
+package com.example.criminalintent.database
 
 import androidx.room.TypeConverter
 import java.util.*

@@ -1,4 +1,4 @@
-package com.example.izotov_criminalintent
+package com.example.criminalintent
 
 import android.app.Activity
 import android.content.Intent
@@ -267,7 +267,7 @@ class CrimeFragment : Fragment(), DatePickerFragment.Callbacks {
         } else {
             getString(R.string.crime_report_unsolved)
         }
-        val dateString = DateFormat.format(com.example.izotov_criminalintent.DATE_FORMAT, crime.date).toString()
+        val dateString = DateFormat.format(com.example.criminalintent.DATE_FORMAT, crime.date).toString()
         val suspect = if (crime.suspect.isBlank()) {
             getString(R.string.crime_report_no_suspect)
         } else {

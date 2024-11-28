@@ -1,4 +1,4 @@
-package com.example.izotov_criminalintent
+package com.example.criminalintent
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

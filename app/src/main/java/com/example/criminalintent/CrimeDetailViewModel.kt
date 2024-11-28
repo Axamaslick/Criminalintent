@@ -1,10 +1,10 @@
-package com.example.izotov_criminalintent
+package com.example.criminalintent
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.example.izotov_criminalintent.database.CrimeRepository
+import com.example.criminalintent.database.CrimeRepository
 import java.io.File
 import java.util.*
 

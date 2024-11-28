@@ -1,7 +1,7 @@
-package com.example.izotov_criminalintent
+package com.example.criminalintent
 
 import androidx.lifecycle.ViewModel
-import com.example.izotov_criminalintent.database.CrimeRepository
+import com.example.criminalintent.database.CrimeRepository
 
 class CrimeListViewModel : ViewModel() {
 

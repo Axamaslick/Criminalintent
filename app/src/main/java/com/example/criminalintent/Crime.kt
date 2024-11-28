@@ -1,4 +1,4 @@
-package com.example.izotov_criminalintent
+package com.example.criminalintent
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
